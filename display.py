@@ -7,6 +7,7 @@ Here are the functions for the action analysis display and the generation of the
 import matplotlib.pyplot as plt
 import numpy as np
 import json
+import os
 
 #################### FUNCTIONS ####################
 
@@ -42,5 +43,9 @@ def display_analysis(dic_actions):
 
 # function for saving the game recreation dictionnary in a JSON file
 def save_json(game_dict):
-    with open('game_recreation.json', 'w') as outfile:
+    output_dir = './output/'                            # Define the output directory path
+    os.makedirs(output_dir, exist_ok=True)              # Create the output directory if it doesn't exist
+    output_file = os.path.join(output_dir, 'game_recreation.json')  # Specify the output file path within the output directory
+
+    with open(output_file, 'w') as outfile:
         json.dump(game_dict, outfile)
